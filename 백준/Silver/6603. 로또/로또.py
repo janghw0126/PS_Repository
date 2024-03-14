@@ -1,17 +1,15 @@
-def lotto(arr, s, index, cnt):
-    if cnt==6:
-        print(*arr)
-        return
-    
-    for i in range(index, len(s)):
-        arr[cnt]=s[i]
-        lotto(arr, s, i+1, cnt+1)
-    
+import itertools
 
 while True:
-    s = list(map(int, input().split()))
-    if s[0]==0:
-        break
-    arr=[0]*6
-    lotto(arr, s[1:], 0, 0)
+
+    array = list(map(int, input().split()))
+
+    k = array[0]
+    S = array[1:]
+
+    for i in itertools.combinations(S, 6):
+        print(*i)
+
+    if k == 0:
+        exit()
     print()
