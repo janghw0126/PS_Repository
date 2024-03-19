@@ -1,27 +1,35 @@
 import sys
 input = sys.stdin.readline
-# 각각의 수들을 입력받는다.
-n,k,q,m = map(int, input().split())
-# 졸고있는 학생들과 출석 코드를 받을 학생들을 초기화한다.
-sleep = [0]*(n+3)
-check = [0]*(n+3)
+###########################################
+# 입력데이터 정보 받아오기
+n, k, q, m = map(int, input().split())
+
+# 자는 학생 저장하기
+# n+2까지 숫자가 index로 들어가야 하므로 길이는 n+3
+sleep = [False for _ in range(n+3)]
+for i in map(int, input().split()):
+    sleep[i] = True
+
+check = [1 for _ in range(n+3)]
 
 for i in map(int, input().split()):
-    sleep[i] = 1
-for i in map(int, input().split()):
-    if sleep[i]: 
+    if sleep[i]:
         continue
-    for j in range(i, n+3, i):
-        if not sleep[j]:
-            check[j] = 1
 
-prefix = [check[0]]
-for i in range(1, n+3):
-    # 각 번호 i까지 출석한 학생들의 합을 구한다.
-    prefix.append(prefix[-1]+check[i])
+    for j in range(i, n+3, i):
+        if sleep[j]:
+            continue
+
+        check[j] = 0
+
+sum_ = 0
+check[2] = 0
+for i in range(3, n+3):
+    if check[i]:
+        sum_ += 1
+
+    check[i] = sum_
 
 for _ in range(m):
-    # s부터 e까지 결석한 학생들의 합을 구한다.
-    s, e = map(int, input().split()) 
-    # 전체 - (s부터 e까지 출석한 학생들)을 출력해준다.
-    print(e-s+1 - (prefix[e]-prefix[s-1])) 
+    s, e = map(int, input().split())
+    print(check[e] - check[s-1])
