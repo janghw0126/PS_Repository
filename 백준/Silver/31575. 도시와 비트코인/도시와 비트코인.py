@@ -9,13 +9,12 @@ visited = [[False] * m for _ in range(n)]
 
 # 이동할 수 있는 방향 정의 (오른쪽, 아래)
 directions = [(0, 1), (1, 0)]
-
+# (x, y) 위치가 유효한 범위 내에 있는지 확인하는 함수
 def is_valid(x, y):
-    """(x, y) 위치가 유효한 범위 내에 있는지 확인하는 함수"""
     return 0 <= x < n and 0 <= y < m
 
+# BFS를 이용하여 (start_x, start_y)에서 목적지까지 이동할 수 있는지 확인하는 함수
 def bfs(start_x, start_y):
-    """BFS를 이용하여 (start_x, start_y)에서 목적지까지 이동할 수 있는지 확인하는 함수"""
     queue = deque([(start_x, start_y)])
     visited[start_x][start_y] = True
 
