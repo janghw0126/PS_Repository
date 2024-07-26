@@ -30,9 +30,9 @@ for _ in range(T):
                 arr.pop()
             elif flag==True:
                 arr.popleft()
-    if not error:
-        if flag==False:
-            arr.reverse()
-            print("["+",".join(arr)+"]")
-        if flag==True:
-            print("["+",".join(arr)+"]")
+    if error:
+        continue
+    if not flag:
+        arr.reverse()
+    
+    print("[" + ",".join(arr) + "]")
