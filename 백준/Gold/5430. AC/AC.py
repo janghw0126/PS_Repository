@@ -1,49 +1,38 @@
-import sys
 from collections import deque
+import sys
 
-# 입력을 받기 위한 설정
-input = sys.stdin.readline
-t = int(input())  # 테스트 케이스의 수
+input=sys.stdin.readline
 
-for _ in range(t):
-    commands = input().strip()  # 명령어 문자열
-    num_elements = int(input())  # 배열의 원소 개수
-    elements = input().strip()[1:-1]  # 대괄호를 제거하고 배열 요소를 가져오기
+T=int(input())
 
-    # 덱 초기화: 빈 문자열이 아니면 쉼표로 구분하여 덱으로 변환
-    if elements:
-        dq = deque(elements.split(','))
+for _ in range(T):
+    p=input()
+    n=int(input())
+    arr=input()
+
+    if n>0:
+        arr=deque(arr.strip()[1:-1].split(","))
     else:
-        dq = deque()
+        arr=deque()
 
-    is_reversed = False  # 배열의 순서를 뒤집었는지 여부를 나타내는 플래그
-    error_occurred = False  # 오류가 발생했는지를 나타내는 플래그
+    flag=True
+    error=False
 
-    # 명령어를 순차적으로 처리
-    for command in commands:
-        if command == 'R':
-            # R 명령어가 나오면 뒤집기 플래그를 토글
-            is_reversed = not is_reversed
-        elif command == 'D':
-            # D 명령어 처리
-            if not dq:
-                # 덱이 비어있으면 에러 출력
+    for char in p:
+        if char=="R":
+            flag=not flag
+        elif char=="D":
+            if not arr:
                 print("error")
-                error_occurred = True
+                error=True
                 break
-            if is_reversed:
-                # 뒤집힌 상태에서는 덱의 끝에서 제거
-                dq.pop()
-            else:
-                # 정상 상태에서는 덱의 앞에서 제거
-                dq.popleft()
-    
-    if error_occurred:
-        continue  # 에러가 발생하면 다음 테스트 케이스로 넘어감
-
-    if is_reversed:
-        # 최종 상태가 뒤집힌 경우 덱을 뒤집음
-        dq.reverse()
-    
-    # 덱을 문자열로 변환하여 출력
-    print("[" + ",".join(dq) + "]")
+            if flag==False:
+                arr.pop()
+            elif flag==True:
+                arr.popleft()
+    if not error:
+        if flag==False:
+            arr.reverse()
+            print("["+",".join(arr)+"]")
+        if flag==True:
+            print("["+",".join(arr)+"]")
