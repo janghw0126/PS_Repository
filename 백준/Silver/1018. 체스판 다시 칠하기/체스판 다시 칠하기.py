@@ -1,26 +1,32 @@
 import sys
-input = sys.stdin.readline
+input=sys.stdin.readline
 
-M, N = map(int, input().split())
-chess = [input().strip() for _ in range(M)]
+M,N=map(int,input().split())
+chess=[]
 
-def count_repaints(x, y, start_color):
-    count = 0
+for _ in range(M):
+    chess.append(input().strip())
+
+def chess_paint(m,n,color):
+    count=0
     for i in range(8):
         for j in range(8):
-            if (i + j) % 2 == 0:
-                if chess[x + i][y + j] != start_color:
-                    count += 1
+            if (i+j)%2==0:
+                if chess[m+i][n+j]!=color:
+                    count+=1
             else:
-                if chess[x + i][y + j] == start_color:
-                    count += 1
+                if chess[m+i][n+j]==color:
+                    count+=1
     return count
 
-min_repaints = float('inf')
-for i in range(M - 7):
-    for j in range(N - 7):
-        repaints_w = count_repaints(i, j, 'W')
-        repaints_b = count_repaints(i, j, 'B')
-        min_repaints = min(min_repaints, repaints_w, repaints_b)
+# 최솟값 초기화
+min_paint=float('inf')
 
-print(min_repaints)
+# B가 먼저 시작할 때 최솟값인지 W가 먼저 시작할 때 최솟값인지 알 수 없기 때문에 둘 다 구해서 최솟값 계산하기
+for m in range(M-7):
+    for n in range(N-7):
+        B_paint=chess_paint(m,n,"B")
+        W_paint=chess_paint(m,n,"W")
+        min_paint=min(min_paint,B_paint,W_paint)
+
+print(min_paint)
