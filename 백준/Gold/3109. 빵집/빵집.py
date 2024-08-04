@@ -3,6 +3,7 @@ arr = [list(input()) for _ in range(r)]
 directx = [-1, 0, 1]
 directy = [1, 1, 1]
 
+# 파이프라인 갯수 선언
 cnt = 0
 
 def dfs(x, y):
