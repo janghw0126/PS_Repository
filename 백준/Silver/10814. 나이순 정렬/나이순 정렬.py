@@ -1,8 +1,14 @@
-A=int(input())
-user = []
-for _ in range(A):
-    age, name = input().split()
-    user.append([int(age),name])
+import sys
+input=sys.stdin.readline
 
-for i in sorted(user,key=lambda x : x[0]):
-    print(i[0],i[1])
+N=int(input())
+list=[]
+
+for _ in range(N):
+    age,name=map(str,input().split())
+    list.append([int(age),name])
+
+list.sort(key=lambda x:x[0])
+
+for li in list:
+    print(li[0],li[1])
