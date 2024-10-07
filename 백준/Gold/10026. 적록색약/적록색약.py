@@ -8,7 +8,7 @@ def bfs(x, y, graph, visited):
     q.append((x, y))
     visited[x][y] = True
     
-    # 상하좌우 방향
+    # 상하좌우 방향 선언하기
     dx, dy = [1, -1, 0, 0], [0, 0, 1, -1]
     
     while q:
@@ -26,11 +26,11 @@ def bfs(x, y, graph, visited):
 n = int(input())
 graph = [list(input().strip()) for _ in range(n)]
 
-# 첫 번째 방문 배열 - 정상인 (R, G, B 구분)
+# 첫 번째 방문 배열은 정상인 (R, G, B 구분함)
 visited = [[False] * n for _ in range(n)]
 normal_count = 0
 
-# 두 번째 방문 배열 - 적록색맹인 (R, G 구분 안 함)
+# 두 번째 방문 배열은 적록색맹인 (R, G 구분 안 함)
 visited_rg = [[False] * n for _ in range(n)]
 rg_count = 0
 
@@ -54,5 +54,4 @@ for i in range(n):
             bfs(i, j, graph, visited_rg)
             rg_count += 1
 
-# 결과 출력
 print(normal_count, rg_count)
