@@ -1,6 +1,7 @@
 def find_year(max_year1, max_year2, target_x, target_y):
     year = target_x
-    while year <= max_year1 * max_year2:
+    max_limit = max_year1 * max_year2
+    while year <= max_limit:
         if (year - target_y) % max_year2 == 0:
             return year
         year += max_year1
