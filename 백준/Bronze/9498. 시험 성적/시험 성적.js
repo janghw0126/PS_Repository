@@ -1,17 +1,16 @@
 const fs = require("fs");
 const filepath = process.platform === 'linux' ? 'dev/stdin' : './input.txt';
 
-const input = fs.readFileSync(filepath).toString().trim().split(' ');
-const score = Number(input[0]);
+const input = Number(fs.readFileSync(filepath).toString().trim().split(' '));
 
 
-if(score>=90 && score<=100){
+if(input>=90 && input<=100){
     console.log("A");
-} else if(score<=89 && score>=80){
+} else if(input<=89 && input>=80){
     console.log("B");
-} else if(score<=79 && score>=70){
+} else if(input<=79 && input>=70){
     console.log("C");
-} else if(score<=69 && score>=60){
+} else if(input<=69 && input>=60){
     console.log("D");
 } else{
     console.log("F");
