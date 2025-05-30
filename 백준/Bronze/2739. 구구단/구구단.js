@@ -1,6 +1,10 @@
-const fs = require('fs');
-const input = fs.readFileSync('dev/stdin').toString();
-const N = +input;
-for(let i = 1; i < 10; i++){
-    console.log(`${N} * ${i} = ${N*i}`)
+fs = require("fs");
+filePath = process.platform === "linux" ? "/dev/stdin" : "test.txt";
+
+let input = Number(fs.readFileSync(filePath).toString());
+let n = 1;
+
+while (n < 10) {
+  console.log(`${input} * ${n} = ${input * n}`);
+  n++;
 }
